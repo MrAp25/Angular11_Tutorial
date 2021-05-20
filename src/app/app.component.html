@@ -1,0 +1,312 @@
+<app-header></app-header>
+<!--Interpolation-->
+<h2>Interpolation</h2>
+<h3>{{ subtitle }}</h3>
+<h3>{{ getFun() }}</h3>
+<h3>{{ obj.str }} / {{ obj.num }}</h3>
+<h3>{{ arr }} / {{ arr[1] }}</h3>
+<h3>Basic Operation= {{ a + b }}</h3>
+<h3>Windows URL= {{ siteUrl }}</h3>
+<!--Interpolation End-->
+<hr />
+<!--Call Component through Module-->
+<h2>Call Component through Module</h2>
+<app-login>Login</app-login>
+<app-signup>Signup</app-signup>
+<!--Call Component through Module End-->
+<hr />
+<!--Router-->
+<h2>Routing</h2>
+<a routerLink="admin">Home (Call Component through Router)</a>
+<br /><br />
+<a routerLink="contact">Contact (Call Component through Router)</a>
+<br /><br />
+<a routerLink="about">About (Call 404 PageNotFound)</a>
+<br />
+<!--Router End-->
+<hr />
+<!--Lazy Loading Module-->
+<h2>Lazy Loading Module</h2>
+<ul>
+  <li><a routerLink="alazy/lista">Login</a></li>
+  <li><a routerLink="alazy/listb">List</a></li>
+</ul>
+<ul>
+  <li><a routerLink="blazy/lista">Login</a></li>
+  <li><a routerLink="blazy/listb">List</a></li>
+</ul>
+<router-outlet></router-outlet>
+<!--Lazy Loading End-->
+<hr />
+<!--Lazy Component
+<h2>Lazy Component</h2>
+<button (Click)="loadAdmin()">Load List A</button>
+<button (Click)="loadContact()">Load List B</button>
+Lazy Component End-->
+<hr />
+<!--Call data from Function-->
+<h2>Call data from function</h2>
+<button (click)="data()">Get Data</button>
+<!--Call data from Function End-->
+<hr />
+<!--Events-->
+<h2>Events</h2>
+<button (click)="myEvent('This is Click Event')">ClickEvent</button>
+<br /><br />
+KeyUp Event (Call on Key Release)<input
+  type="text"
+  #KeyUp
+  (keyup)="myEvent(KeyUp.value)"
+/>
+<br /><br />
+KeyUp.space Event (Call on Scape Press)<input
+  type="text"
+  #KeySpace
+  (keyup.space)="myEvent(KeySpace.value)"
+/>
+<br /><br />
+KeyDown Event (Call on Key Press)<input
+  type="text"
+  #KeyDown
+  (keydown)="myEvent(KeyDown.value)"
+/>
+<br /><br />
+Blur Event (Call on Key Press)<input
+  type="text"
+  #Blur
+  (blur)="myEvent('This is Blur Event')"
+/>
+<br /><br />
+<div
+  (mouseover)="myEvent('This is Mouse Over Event')"
+  style="background-color: dimgray"
+>
+  Mouseover In Event
+</div>
+<br />
+<div
+  (mouseleave)="myEvent('This is Mouse Leave Event')"
+  style="background-color: dimgray"
+>
+  Mouseover Leave Event
+</div>
+<!--Events End-->
+<hr />
+<!--Bind Property Value-->
+<h2>Binding Properties to Value</h2>
+<input type="text" [disabled]="disabledBox" [value]="bind" />
+<br /><br />
+<input type="text" [disabled]="disabledBox" value="{{ bind }}" />
+<br /><br />
+<!--Bind Property Value End-->
+<!--Enable Disable-->
+<h2>Enable Disable</h2>
+<button (click)="enableBox()">Enable TextBox</button>
+<!--Enable Disable-->
+<hr />
+<!--If Else-->
+<h2>If Else</h2>
+<h3 *ngIf="show == 'yes'; than: ifBlock; else: elseBlock">If Block</h3>
+<ng-template #ifBlock><h3>If Block</h3></ng-template>
+<ng-template #elseBlock><h3>Else Block</h3></ng-template>
+<ng-template [ngIf]="clr == 'red'">
+  <h3 style="color: red">Red Block</h3>
+</ng-template>
+<ng-template [ngIf]="clr == 'green'">
+  <h3 style="color: green">Green Block</h3>
+</ng-template>
+<ng-template [ngIf]="clr == 'blue'">
+  <h3 style="color: blue">Blue Block</h3>
+</ng-template>
+<!--If Else End-->
+<hr />
+<!--Switch Case-->
+<h2>Switch Case</h2>
+<div [ngSwitch]="color">
+  <h3 *ngSwitchCase="'red'" style="color: red">Red Color</h3>
+  <h3 *ngSwitchCase="'green'" style="color: green">Green Color</h3>
+  <h3 *ngSwitchCase="'blue'" style="color: blue">Blue Color</h3>
+</div>
+<!--Switch Case End-->
+<hr />
+<!--For Loop-->
+<h2>For Loop</h2>
+<h3 *ngFor="let item of loop">
+  {{ item.name }} {{ item.age }} {{ item.email }}
+</h3>
+<!--For Loop End-->
+<hr />
+<!--Simple Form-->
+<h2>Simple Form</h2>
+<form #simpleForm="ngForm" (ngSubmit)="getValue(simpleForm.value)">
+  <input type="text" ngModel name="name" placeholder="Enter Name" />
+  <br /><br />
+  <input type="text" ngModel name="age" placeholder="Enter Age" /> <br /><br />
+  <input type="text" ngModel name="address" placeholder="Enter Address"/><br /><br />
+  <button>Get Value</button>
+</form>
+<!--Simple Form End-->
+<hr />
+<!--Style Binding-->
+<h2>Style Binding</h2>
+<h3 style="color: red">CSS Style Binding</h3>
+<h3 [style.color]="'green'">Simple Style Binding</h3>
+<h3 [style.color]="colr">Dynamic Style Binding</h3>
+<button (click)="updateColor()">Update Color</button>
+<h3 [style.color]="con ? 'red' : 'aqua'">Conditional Style Binding</h3>
+<h3 [style.color]="err ? 'red' : 'purple'">Conditional Style Binding</h3>
+<!--Style Binding End-->
+<hr />
+<h2>Angualar Bootstrap</h2>
+<app-bootstrap></app-bootstrap>
+<hr />
+<!--Material-->
+<h2>Angular Material</h2>
+<mat-form-field class="example-chip-list">
+  <mat-label>Favorite Fruits</mat-label>
+  <mat-chip-list #chipList aria-label="Fruit selection">
+    <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+             [removable]="removable" (removed)="remove(fruit)">
+      {{fruit.name}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input placeholder="New fruit..."
+           [matChipInputFor]="chipList"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           [matChipInputAddOnBlur]="addOnBlur"
+           (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+</mat-form-field>
+<!--Material End-->
+<hr />
+<!--Data From Parent to Child-->
+<h2>Data from Parent to Child</h2>
+<app-child [mssg]="msg"></app-child>
+<!--Data From Parent to Child End-->
+<!--Data From Child to Parent-->
+<h2>Data from Child to Parent</h2>
+<app-child (parent)="parent($event)"></app-child>
+<h3>{{mesg}}{{mnum}}</h3>
+<!--Data From Child to Parent End-->
+<hr/>
+<!--Pipes-->
+<h2>Pipes</h2>
+<h3>Upercase Pipe = {{pps | uppercase}}</h3>
+<h3>Titlecase Pipe = {{pps | titlecase}}</h3>
+<h3>Lowercase Pipe = {{pps | lowercase}}</h3>
+<h3>Slice = {{pps | slice:2}}</h3>
+<h3>Date = {{today | date}}</h3>
+<h3>Full Date = {{today | date:'fullDate'}}</h3>
+<h3>Currency = {{crncy | currency:'USD'}}</h3>
+<h3>Date = {{crncy | currency:'CAD'}}</h3>
+<!--Pipes End-->
+<hr/>
+<!--Custom Directive-->
+<h2>Custom Directive</h2>
+<h3 appCustomstyle>This is From Custom Directive</h3>
+<!--Custom Directive End-->
+<hr />
+<!--Data from Service-->
+<h2>Data From Service</h2>
+<table border="1">
+  <th colspan="4">Data From Service</th>
+  <tr>
+    <td>Name</td>
+    <td>Age</td>
+    <td>Contact</td>
+    <td>Indian</td>
+  </tr>
+  <tr>
+    <td>{{ name }}</td>
+    <td>{{ age }}</td>
+    <td>{{ contact }}</td>
+    <td>{{ indian }}</td>
+  </tr>
+</table>
+<!--Data from Service End-->
+<hr />
+<!--API-->
+<h2>Call API Data</h2>
+<table border="1">
+  <th colspan="4">Data From API Service</th>
+  <tr>
+    <td>Id</td>
+    <td>Title</td>
+    <td>UserId</td>
+    <td>Complated</td>
+  </tr>
+  <tr **ngFor="let item of apiData"> 
+    <td>{{item.id}}</td>
+    <td>{{item.title}}</td>
+    <td>{{item.userId}}</td>
+    <td>{{item.complated}}</td>
+  </tr>
+</table>
+<!--API End-->
+<hr />
+<div class="row">
+<!--Template Driven/Bootstrap Form-->
+<div class="col-sm-6">
+<h2>Template Driven/Bootstrap Form</h2>
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
+    #email="ngModel" name="email" ngModel required>
+    <span class="error" *ngIf="email.invalid && email.touched">E-mail is required</span>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="password" ngModel>
+  </div>
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+</div>
+<!--Template Driven/Bootstrap Form End-->
+<!--Reactive Form-->
+<div class="col-sm-6">
+<h2>Reactive Form</h2>
+<form [formGroup]="loginForm">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" formControlName="email" placeholder="Enter Email">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" formControlName="password" placeholder="Enter Password">
+  </div>
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+</div>
+<!--Reactive Fortm End-->
+</div>
+<hr />
+<!--Prefilled Form-->
+<div class="col-sm-12">
+<h2>Prefilled Form</h2>
+<form [formGroup]="testForm">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name : </label>
+    <input type="text" class="form-control" formControlName="name" placeholder="Enter Name" [ngModel]="formData.name">
+  </div>
+  <div class="mb-3">
+    <label for="mobile" class="form-label">Mobile Number : </label>
+    <input type="text" class="form-control" formControlName="mobile" placeholder="Enter Mobile Number" [ngModel]="formData.mobile">
+  </div>
+  <div class="mb-3">
+    <label for="mobile" class="form-label">Mobile Address : </label>
+    <textarea class="form-control" formControlName="address" placeholder="Enter Address" [ngModel]="formData.address"></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="temail" class="form-label">Email address</label>
+    <input type="email" class="form-control" formControlName="temail" placeholder="Enter Email" [ngModel]="formData.temail">
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Password</label>
+    <input type="tpassword" class="form-control" formControlName="tpassword" placeholder="Enter Password" [ngModel]="formData.tpassword">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+<!--Prefilled Fortm End-->
+<app-footer></app-footer>
