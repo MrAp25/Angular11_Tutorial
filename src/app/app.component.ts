@@ -163,11 +163,11 @@ export class AppComponent {
   age: number; //number datatype declaration
   contact: any; //any datatype declaration
   indian: boolean; //boolean datatype declaration
-  apiData = [];
+  apiData: any = [];
   //Data & API from Service
-  constructor(private user: UserdataService, private viewContainer: ViewContainerRef, private cfr:ComponentFactoryResolver) {
+  constructor(private userService: UserdataService, private viewContainer: ViewContainerRef, private cfr:ComponentFactoryResolver) {
     //Data from service
-    let data = this.user.getData(); //getData from service
+    let data = this.userService.getData(); //getData from service
     this.name = data.name, //bind service data to datatype
       this.age = data.age,  //bind service data to datatype
       this.contact = data.contact,  //bind service data to datatype
@@ -188,9 +188,9 @@ export class AppComponent {
       }*/
       
       //API data from Service
-      this.user.getApiData().subscribe(apiData => {
-        console.warn(apiData)
-        //this.apiData=apiData
+      this.userService.getApiData().subscribe(apiData => {
+        console.log(apiData);
+        this.apiData=apiData;
       })
   }
   
